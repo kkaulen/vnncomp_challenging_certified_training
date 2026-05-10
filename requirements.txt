@@ -1,0 +1,10 @@
+numpy
+torch
+torchvision
+pillow
+onnx
+requests
+
+# Optional: if installed, generate_properties.py will try CTRAIN's dataset
+# loaders before falling back to local torchvision/urllib helpers.
+# CTRAIN

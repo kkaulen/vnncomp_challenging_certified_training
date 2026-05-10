@@ -28,7 +28,6 @@
       ],
       "n_classes": 10,
       "eps": 0.00784313725490196,
-      "checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "results_json": "verification_results/cifar10_eps2_cnn7.json"
     },
     {
@@ -43,7 +42,6 @@
       ],
       "n_classes": 10,
       "eps": 0.00784313725490196,
-      "checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "results_json": "verification_results/cifar10_eps2_wide_cnn7.json"
     },
     {
@@ -58,7 +56,6 @@
       ],
       "n_classes": 10,
       "eps": 0.03137254901960784,
-      "checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "results_json": "verification_results/cifar10_eps8_cnn7.json"
     },
     {
@@ -73,7 +70,6 @@
       ],
       "n_classes": 10,
       "eps": 0.03137254901960784,
-      "checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "results_json": "verification_results/cifar10_eps8_wide_cnn7.json"
     },
     {
@@ -88,7 +84,6 @@
       ],
       "n_classes": 200,
       "eps": 0.00392156862745098,
-      "checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "results_json": "verification_results/tinyimagenet_eps1_cnn7.json"
     },
     {
@@ -103,7 +98,6 @@
       ],
       "n_classes": 200,
       "eps": 0.00392156862745098,
-      "checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=wide_cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "results_json": "verification_results/tinyimagenet_eps1_wide_cnn7.json"
     }
   ],
@@ -120,7 +114,6 @@
       "onnx_path": "onnx/cifar10_eps2_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_cnn7/cifar10_eps2_cnn7_idx904_sample0.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -135,7 +128,6 @@
       "onnx_path": "onnx/cifar10_eps2_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_cnn7/cifar10_eps2_cnn7_idx7710_sample1.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -150,7 +142,6 @@
       "onnx_path": "onnx/cifar10_eps2_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_cnn7/cifar10_eps2_cnn7_idx4322_sample2.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -165,7 +156,6 @@
       "onnx_path": "onnx/cifar10_eps2_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_cnn7/cifar10_eps2_cnn7_idx4251_sample3.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -180,7 +170,6 @@
       "onnx_path": "onnx/cifar10_eps2_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_cnn7/cifar10_eps2_cnn7_idx1628_sample4.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -195,7 +184,6 @@
       "onnx_path": "onnx/cifar10_eps2_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_cnn7/cifar10_eps2_cnn7_idx6167_sample5.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -210,7 +198,6 @@
       "onnx_path": "onnx/cifar10_eps2_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_cnn7/cifar10_eps2_cnn7_idx932_sample6.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -225,7 +212,6 @@
       "onnx_path": "onnx/cifar10_eps2_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_cnn7/cifar10_eps2_cnn7_idx9809_sample7.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -240,7 +226,6 @@
       "onnx_path": "onnx/cifar10_eps2_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_cnn7/cifar10_eps2_cnn7_idx7654_sample8.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -255,7 +240,6 @@
       "onnx_path": "onnx/cifar10_eps2_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_cnn7/cifar10_eps2_cnn7_idx7942_sample9.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -270,7 +254,6 @@
       "onnx_path": "onnx/cifar10_eps2_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_wide_cnn7/cifar10_eps2_wide_cnn7_idx5132_sample0.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -285,7 +268,6 @@
       "onnx_path": "onnx/cifar10_eps2_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_wide_cnn7/cifar10_eps2_wide_cnn7_idx1266_sample1.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -300,7 +282,6 @@
       "onnx_path": "onnx/cifar10_eps2_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_wide_cnn7/cifar10_eps2_wide_cnn7_idx5063_sample2.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -315,7 +296,6 @@
       "onnx_path": "onnx/cifar10_eps2_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_wide_cnn7/cifar10_eps2_wide_cnn7_idx4450_sample3.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -330,7 +310,6 @@
       "onnx_path": "onnx/cifar10_eps2_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_wide_cnn7/cifar10_eps2_wide_cnn7_idx7492_sample4.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -345,7 +324,6 @@
       "onnx_path": "onnx/cifar10_eps2_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_wide_cnn7/cifar10_eps2_wide_cnn7_idx1474_sample5.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -360,7 +338,6 @@
       "onnx_path": "onnx/cifar10_eps2_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_wide_cnn7/cifar10_eps2_wide_cnn7_idx9074_sample6.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -375,7 +352,6 @@
       "onnx_path": "onnx/cifar10_eps2_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_wide_cnn7/cifar10_eps2_wide_cnn7_idx4603_sample7.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -390,7 +366,6 @@
       "onnx_path": "onnx/cifar10_eps2_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_wide_cnn7/cifar10_eps2_wide_cnn7_idx8261_sample8.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -405,7 +380,6 @@
       "onnx_path": "onnx/cifar10_eps2_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps2_wide_cnn7/cifar10_eps2_wide_cnn7_idx5415_sample9.vnnlib",
       "source_results_json": "verification_results/cifar10_eps2_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -420,7 +394,6 @@
       "onnx_path": "onnx/cifar10_eps8_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_cnn7/cifar10_eps8_cnn7_idx918_sample0.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -435,7 +408,6 @@
       "onnx_path": "onnx/cifar10_eps8_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_cnn7/cifar10_eps8_cnn7_idx5557_sample1.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -450,7 +422,6 @@
       "onnx_path": "onnx/cifar10_eps8_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_cnn7/cifar10_eps8_cnn7_idx774_sample2.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -465,7 +436,6 @@
       "onnx_path": "onnx/cifar10_eps8_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_cnn7/cifar10_eps8_cnn7_idx9224_sample3.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -480,7 +450,6 @@
       "onnx_path": "onnx/cifar10_eps8_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_cnn7/cifar10_eps8_cnn7_idx1742_sample4.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": true
     },
     {
@@ -495,7 +464,6 @@
       "onnx_path": "onnx/cifar10_eps8_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_cnn7/cifar10_eps8_cnn7_idx1742_sample5.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": true
     },
     {
@@ -510,7 +478,6 @@
       "onnx_path": "onnx/cifar10_eps8_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_cnn7/cifar10_eps8_cnn7_idx1742_sample6.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": true
     },
     {
@@ -525,7 +492,6 @@
       "onnx_path": "onnx/cifar10_eps8_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_cnn7/cifar10_eps8_cnn7_idx2527_sample7.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -540,7 +506,6 @@
       "onnx_path": "onnx/cifar10_eps8_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_cnn7/cifar10_eps8_cnn7_idx5631_sample8.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -555,7 +520,6 @@
       "onnx_path": "onnx/cifar10_eps8_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_cnn7/cifar10_eps8_cnn7_idx1655_sample9.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -570,7 +534,6 @@
       "onnx_path": "onnx/cifar10_eps8_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_wide_cnn7/cifar10_eps8_wide_cnn7_idx3535_sample0.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -585,7 +548,6 @@
       "onnx_path": "onnx/cifar10_eps8_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_wide_cnn7/cifar10_eps8_wide_cnn7_idx679_sample1.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -600,7 +562,6 @@
       "onnx_path": "onnx/cifar10_eps8_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_wide_cnn7/cifar10_eps8_wide_cnn7_idx5297_sample2.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -615,7 +576,6 @@
       "onnx_path": "onnx/cifar10_eps8_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_wide_cnn7/cifar10_eps8_wide_cnn7_idx9125_sample3.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -630,7 +590,6 @@
       "onnx_path": "onnx/cifar10_eps8_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_wide_cnn7/cifar10_eps8_wide_cnn7_idx6515_sample4.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": true
     },
     {
@@ -645,7 +604,6 @@
       "onnx_path": "onnx/cifar10_eps8_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_wide_cnn7/cifar10_eps8_wide_cnn7_idx6515_sample5.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": true
     },
     {
@@ -660,7 +618,6 @@
       "onnx_path": "onnx/cifar10_eps8_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_wide_cnn7/cifar10_eps8_wide_cnn7_idx741_sample6.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": true
     },
     {
@@ -675,7 +632,6 @@
       "onnx_path": "onnx/cifar10_eps8_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_wide_cnn7/cifar10_eps8_wide_cnn7_idx5347_sample7.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -690,7 +646,6 @@
       "onnx_path": "onnx/cifar10_eps8_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_wide_cnn7/cifar10_eps8_wide_cnn7_idx5247_sample8.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -705,7 +660,6 @@
       "onnx_path": "onnx/cifar10_eps8_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/cifar10_eps8_wide_cnn7/cifar10_eps8_wide_cnn7_idx4073_sample9.vnnlib",
       "source_results_json": "verification_results/cifar10_eps8_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -720,7 +674,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_cnn7/tinyimagenet_eps1_cnn7_idx1550_sample0.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -735,7 +688,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_cnn7/tinyimagenet_eps1_cnn7_idx7368_sample1.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -750,7 +702,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_cnn7/tinyimagenet_eps1_cnn7_idx7651_sample2.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -765,7 +716,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_cnn7/tinyimagenet_eps1_cnn7_idx9415_sample3.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -780,7 +730,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_cnn7/tinyimagenet_eps1_cnn7_idx2809_sample4.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -795,7 +744,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_cnn7/tinyimagenet_eps1_cnn7_idx8163_sample5.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -810,7 +758,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_cnn7/tinyimagenet_eps1_cnn7_idx2531_sample6.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -825,7 +772,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_cnn7/tinyimagenet_eps1_cnn7_idx3524_sample7.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -840,7 +786,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_cnn7/tinyimagenet_eps1_cnn7_idx7848_sample8.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -855,7 +800,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_cnn7/tinyimagenet_eps1_cnn7_idx431_sample9.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -870,7 +814,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_wide_cnn7/tinyimagenet_eps1_wide_cnn7_idx6765_sample0.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=wide_cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -885,7 +828,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_wide_cnn7/tinyimagenet_eps1_wide_cnn7_idx1330_sample1.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=wide_cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -900,7 +842,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_wide_cnn7/tinyimagenet_eps1_wide_cnn7_idx5250_sample2.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=wide_cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -915,7 +856,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_wide_cnn7/tinyimagenet_eps1_wide_cnn7_idx5214_sample3.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=wide_cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -930,7 +870,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_wide_cnn7/tinyimagenet_eps1_wide_cnn7_idx4592_sample4.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=wide_cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -945,7 +884,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_wide_cnn7/tinyimagenet_eps1_wide_cnn7_idx9522_sample5.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=wide_cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -960,7 +898,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_wide_cnn7/tinyimagenet_eps1_wide_cnn7_idx7037_sample6.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=wide_cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -975,7 +912,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_wide_cnn7/tinyimagenet_eps1_wide_cnn7_idx1222_sample7.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=wide_cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -990,7 +926,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_wide_cnn7/tinyimagenet_eps1_wide_cnn7_idx7616_sample8.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=wide_cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     },
     {
@@ -1005,7 +940,6 @@
       "onnx_path": "onnx/tinyimagenet_eps1_wide_cnn7.onnx",
       "vnnlib_path": "vnnlib/tinyimagenet_eps1_wide_cnn7/tinyimagenet_eps1_wide_cnn7_idx6697_sample9.vnnlib",
       "source_results_json": "verification_results/tinyimagenet_eps1_wide_cnn7.json",
-      "source_checkpoint": "results/diffusion_scaling/dataset=tiny_imagenet/network=wide_cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
       "replacement_sampling": false
     }
   ]

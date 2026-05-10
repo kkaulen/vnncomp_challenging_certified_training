@@ -1,6 +1,9 @@
 # VNN-COMP Challenging Certified Training
 
-This benchmark contains verification instances for six certified-training models:
+This benchmark targets complete verification of recent state-of-the-art
+certified-training models trained with CTRAIN. It contains six MTL-IBP-based
+models and seed-specific local-robustness properties for CIFAR-10 and
+TinyImageNet:
 
 - `cifar10_eps2_cnn7`
 - `cifar10_eps2_wide_cnn7`
@@ -9,32 +12,125 @@ This benchmark contains verification instances for six certified-training models
 - `tinyimagenet_eps1_cnn7`
 - `tinyimagenet_eps1_wide_cnn7`
 
-The benchmark is self-contained for VNN-COMP use. The committed `onnx/`,
-`onnx_models.zip`, `verification_results/`, `vnnlib/`, `instances.csv`, and
-`metadata/sampled_instances.json` files are enough to run the benchmark on
-another machine.
+## Motivation
+
+Using CTRAIN, we obtained unusually strong certifiably trained models based on
+MTL-IBP. These models improve the state of the art in certified training, but
+they also expose a verification bottleneck: better certified-training
+performance often makes complete verification substantially harder.
+
+| Setting | Model | Standard acc. | Certified acc. |
+| --- | --- | ---: | ---: |
+| CIFAR-10, epsilon `2/255` | `cnn7` | `83.54%` | `66.04%` |
+| CIFAR-10, epsilon `8/255` | `cnn7` | `57.19%` | `35.49%` |
+| TinyImageNet, epsilon `1/255` | `cnn7_tinyimagenet` | `41.59%` | `27.72%` |
+
+We additionally include wider variants of these models. These models may be
+state of the art in terms of certified-training performance, but they suffer
+severely from timeouts under complete verification.
+
+| Setting | Wide model | Standard acc. | Certified acc. |
+| --- | --- | ---: | ---: |
+| CIFAR-10, epsilon `2/255` | `wide_cnn7` | `85.37%` | `46.39%` |
+| CIFAR-10, epsilon `8/255` | `wide_cnn7` | `57.74%` | `33.44%` |
+| TinyImageNet, epsilon `1/255` | `wide_cnn7_tinyimagenet` | `41.89%` | `25.58%` |
+
+| Setting | Wide model | Timeouts | Timeout rate |
+| --- | --- | ---: | ---: |
+| CIFAR-10, epsilon `2/255` | `wide_cnn7` | `1,433/10,000` | `14.33%` |
+| CIFAR-10, epsilon `8/255` | `wide_cnn7` | `132/10,000` | `1.32%` |
+| TinyImageNet, epsilon `1/255` | `wide_cnn7_tinyimagenet` | `401/10,000` | `4.01%` |
+
+The bundled results were obtained with abCROWN using its standard
+complete-verification configuration. Each of the six benchmark models was
+evaluated on `10,000` test-set properties. Across all `60,000` properties,
+`2,994` timed out. The hardest individual setting is `cifar10_eps2_wide_cnn7`,
+with `1,433/10,000` timeouts.
+
+| Model | Evaluated properties | Timeouts | Timeout rate |
+| --- | ---: | ---: | ---: |
+| `cifar10_eps2_cnn7` | `10,000` | `658` | `6.58%` |
+| `cifar10_eps2_wide_cnn7` | `10,000` | `1,433` | `14.33%` |
+| `cifar10_eps8_cnn7` | `10,000` | `134` | `1.34%` |
+| `cifar10_eps8_wide_cnn7` | `10,000` | `132` | `1.32%` |
+| `tinyimagenet_eps1_cnn7` | `10,000` | `236` | `2.36%` |
+| `tinyimagenet_eps1_wide_cnn7` | `10,000` | `401` | `4.01%` |
+| Total | `60,000` | `2,994` | `4.99%` |
+
+In other words, progress in certified training now creates verification
+workloads that current complete verifiers often cannot finish within practical
+budgets.
+
+This benchmark is designed to measure progress on complete verification for
+challenging but highly relevant certifiably trained image classifiers.
+
+## Methodology
+
+We start from three strong CTRAIN certified-training models and include their
+matching wide-model variants:
+
+- CIFAR-10, epsilon `2/255`, `cnn7`.
+- CIFAR-10, epsilon `2/255`, `wide_cnn7`.
+- CIFAR-10, epsilon `8/255`, `cnn7`.
+- CIFAR-10, epsilon `8/255`, `wide_cnn7`.
+- TinyImageNet, epsilon `1/255`, `cnn7_tinyimagenet`.
+- TinyImageNet, epsilon `1/255`, `wide_cnn7_tinyimagenet`.
+
+Each model was evaluated on `10,000` test-set properties with abCROWN using its
+standard complete-verification configuration. We use the resulting
+`verification_results/*.json` files to stratify properties by observed abCROWN
+runtime:
+
+- `[0,10]` seconds
+- `[10,100]` seconds
+- `[100,1000]` seconds
+- timeout
+
+For each model, the generator samples `10` properties:
+
+- 2 from `[0,10]`
+- 2 from `[10,100]`
+- 3 from `[100,1000]`
+- 3 from timeout
+
+This yields `60` total benchmark instances. If a bin has fewer properties than
+requested for a model, sampling is performed with replacement and recorded in
+the metadata. The generated CSV timeout budget is capped at 6 hours exactly:
+
+- `[0,10]`: `30` seconds
+- `[10,100]`: `120` seconds
+- `[100,1000]`: `550` seconds
+- timeout: `550` seconds
+
+Total timeout budget:
+`12 * 30 + 12 * 120 + 18 * 550 + 18 * 550 = 21,600` seconds.
+
+The generated VNN-LIB files encode standard local robustness. Inputs are
+normalized test images, perturbations are channelwise normalized by the dataset
+standard deviation, and bounds are clamped to normalized image-space `[0,1]`
+limits. The output constraints encode the adversarial disjunction, so `unsat`
+means the model is robust for the property.
 
 ## Benchmark Generation
 
-Generate a seed-specific benchmark from bundled verification results and test
-sets with:
+The repository ships only the benchmark generator and the abCROWN verification
+results used for sampling. ONNX models, datasets, VNN-LIB files, metadata, and
+`instances.csv` are generated locally.
+
+Generate a seed-specific benchmark with:
 
 ```bash
 python generate_properties.py 42
 ```
 
-This default mode does not need the original training checkpoints or the
-original abCROWN workspace. It does the following:
+The generator:
 
-- ensures the six ONNX models exist, extracting `onnx_models.zip` if needed
-- if the zip is absent, downloads it from `--onnx-zip-url`,
+- downloads the six ONNX models from `--onnx-zip-url`,
   `VNNCOMP_ONNX_ZIP_URL`, or the built-in Sciebo share
-- downloads CIFAR-10 and TinyImageNet under `data/` when missing
-- tries CTRAIN dataset loaders first, then falls back to local
-  torchvision/urllib download helpers
-- samples new image indices from the bundled `verification_results/*.json`
-  files using the requested seed
-- regenerates `vnnlib/`, `instances.csv`, and `metadata/sampled_instances.json`
+- downloads CIFAR-10 and TinyImageNet test data under `data/` when missing
+- samples new image indices from `verification_results/*.json`
+- writes `onnx/`, `vnnlib/`, `instances.csv`, and
+  `metadata/sampled_instances.json`
 
 For an external ONNX archive:
 
@@ -44,61 +140,10 @@ python generate_properties.py 42 --onnx-zip-url https://example.org/onnx_models.
 
 The built-in ONNX archive source is the password-protected Sciebo share
 `https://rwth-aachen.sciebo.de/s/zr2GXGNWwjyWrBX`. The default password is
-included in the generator, and can be overridden with `VNNCOMP_SCIEBO_PASSWORD`.
+included in the generator and can be overridden with `VNNCOMP_SCIEBO_PASSWORD`.
 
 To use an existing dataset directory:
 
 ```bash
 python generate_properties.py 42 --data-root /path/to/data
 ```
-
-The generator writes:
-
-- `instances.csv`
-- `vnnlib/<model_key>/*.vnnlib`
-- `metadata/sampled_instances.json`
-
-The sampling layout is:
-
-- 60 total instances
-- 10 instances per model
-- per model: 2 from `[0,10]`, 2 from `[10,100]`, 3 from `[100,1000]`, and 3
-  timeout instances
-- total CSV timeout: 21,600 seconds
-
-Per-instance CSV timeouts are:
-
-- `[0,10]`: 30 seconds
-- `[10,100]`: 120 seconds
-- `[100,1000]`: 550 seconds
-- `timeout`: 550 seconds
-
-## Source Rebuild
-
-Development-only full regeneration is available with:
-
-```bash
-python generate_properties.py 42 --rebuild-from-sources
-```
-
-This mode recreates `onnx/`, `vnnlib/`, `instances.csv`, and metadata from the
-original local training workspace. It expects the checkpoint paths under
-`../results`. Verification results still come from the benchmark-local
-`verification_results/` files.
-
-The source rebuild intentionally keeps local model definitions in this script so
-that checkpoint-to-ONNX export is independent of broader experiment side
-effects. The source checkpoints are CTRAIN `ModelWrapper.state_dict()` files,
-which delegate to auto_LiRPA `BoundedModule.state_dict()`. Their keys are graph
-node names such as `/1.param` and `/5.buffer`; the generator maps these tensors
-to the local PyTorch model by ordered, shape-checked assignment. BatchNorm
-weights, biases, running means, and running variances are all loaded. The only
-PyTorch BatchNorm state entries not present in the auto_LiRPA checkpoints are
-`num_batches_tracked` counters.
-
-The ONNX export path mirrors CTRAIN's helper: opset 18, dynamic batch axis,
-evaluation mode, `dynamo=False`, and post-export removal of BatchNormalization
-or Dropout `training_mode` attributes.
-
-CTRAIN can be installed alongside this benchmark for development workflows, but
-it is not required to run the committed benchmark artifacts.

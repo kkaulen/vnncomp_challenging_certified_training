@@ -21,7 +21,6 @@ import numpy as np
 import onnx
 import requests
 import torch
-import torch.nn as nn
 from PIL import Image
 
 
@@ -74,7 +73,6 @@ class ModelSpec:
     input_shape: tuple[int, int, int]
     n_classes: int
     eps: float
-    checkpoint: str
     results_json: str
 
 
@@ -91,7 +89,6 @@ class SampledInstance:
     onnx_path: str
     vnnlib_path: str
     source_results_json: str
-    source_checkpoint: str
     replacement_sampling: bool
 
 
@@ -104,7 +101,6 @@ MODEL_SPECS = [
         input_shape=(3, 32, 32),
         n_classes=10,
         eps=2 / 255,
-        checkpoint="results/diffusion_scaling/dataset=cifar/network=cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
         results_json="verification_results/cifar10_eps2_cnn7.json",
     ),
     ModelSpec(
@@ -115,7 +111,6 @@ MODEL_SPECS = [
         input_shape=(3, 32, 32),
         n_classes=10,
         eps=2 / 255,
-        checkpoint="results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=2_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x100/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
         results_json="verification_results/cifar10_eps2_wide_cnn7.json",
     ),
     ModelSpec(
@@ -126,7 +121,6 @@ MODEL_SPECS = [
         input_shape=(3, 32, 32),
         n_classes=10,
         eps=8 / 255,
-        checkpoint="results/diffusion_scaling/dataset=cifar/network=cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
         results_json="verification_results/cifar10_eps8_cnn7.json",
     ),
     ModelSpec(
@@ -137,7 +131,6 @@ MODEL_SPECS = [
         input_shape=(3, 32, 32),
         n_classes=10,
         eps=8 / 255,
-        checkpoint="results/diffusion_scaling/dataset=cifar/network=wide_cnn7/eps=8_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x50/compute=x10/ratio=r0p3/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
         results_json="verification_results/cifar10_eps8_wide_cnn7.json",
     ),
     ModelSpec(
@@ -148,7 +141,6 @@ MODEL_SPECS = [
         input_shape=(3, 64, 64),
         n_classes=200,
         eps=1 / 255,
-        checkpoint="results/diffusion_scaling/dataset=tiny_imagenet/network=cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
         results_json="verification_results/tinyimagenet_eps1_cnn7.json",
     ),
     ModelSpec(
@@ -159,72 +151,9 @@ MODEL_SPECS = [
         input_shape=(3, 64, 64),
         n_classes=200,
         eps=1 / 255,
-        checkpoint="results/diffusion_scaling/dataset=tiny_imagenet/network=wide_cnn7_tinyimagenet/eps=1_over_255/activation=relu/optimizer=adam/spectral_norm=False/scheduler=multi_step/data=x10/compute=x5/ratio=r0p6/seed=42/mtl_ibp_inc_cifar10_2_255_42.pt",
         results_json="verification_results/tinyimagenet_eps1_wide_cnn7.json",
     ),
 ]
-
-
-class CNN7(nn.Module):
-    def __init__(self, input_shape: tuple[int, int, int], width: int, n_classes: int) -> None:
-        super().__init__()
-        in_channels, in_dim, _ = input_shape
-        self.layers = nn.Sequential(
-            nn.Conv2d(in_channels, width, kernel_size=3, stride=1, padding=1),
-            nn.BatchNorm2d(width),
-            nn.ReLU(),
-            nn.Conv2d(width, width, kernel_size=3, stride=1, padding=1),
-            nn.BatchNorm2d(width),
-            nn.ReLU(),
-            nn.Conv2d(width, 2 * width, kernel_size=3, stride=2, padding=1),
-            nn.BatchNorm2d(2 * width),
-            nn.ReLU(),
-            nn.Conv2d(2 * width, 2 * width, kernel_size=3, stride=1, padding=1),
-            nn.BatchNorm2d(2 * width),
-            nn.ReLU(),
-            nn.Conv2d(2 * width, 2 * width, kernel_size=3, stride=1, padding=1),
-            nn.BatchNorm2d(2 * width),
-            nn.ReLU(),
-            nn.Flatten(),
-            nn.Linear((in_dim // 2) * (in_dim // 2) * 2 * width, 512),
-            nn.BatchNorm1d(512),
-            nn.ReLU(),
-            nn.Linear(512, n_classes),
-        )
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return self.layers(x)
-
-
-class CNN7TinyImageNet(nn.Module):
-    def __init__(self, input_shape: tuple[int, int, int], width: int, n_classes: int) -> None:
-        super().__init__()
-        in_channels, in_dim, _ = input_shape
-        self.layers = nn.Sequential(
-            nn.Conv2d(in_channels, width, kernel_size=3, stride=1, padding=1),
-            nn.BatchNorm2d(width),
-            nn.ReLU(),
-            nn.Conv2d(width, width, kernel_size=3, stride=1, padding=1),
-            nn.BatchNorm2d(width),
-            nn.ReLU(),
-            nn.Conv2d(width, 2 * width, kernel_size=3, stride=2, padding=1),
-            nn.BatchNorm2d(2 * width),
-            nn.ReLU(),
-            nn.Conv2d(2 * width, 2 * width, kernel_size=3, stride=1, padding=1),
-            nn.BatchNorm2d(2 * width),
-            nn.ReLU(),
-            nn.Conv2d(2 * width, 2 * width, kernel_size=3, stride=2, padding=1),
-            nn.BatchNorm2d(2 * width),
-            nn.ReLU(),
-            nn.Flatten(),
-            nn.Linear((in_dim // 4) * (in_dim // 4) * 2 * width, 512),
-            nn.BatchNorm1d(512),
-            nn.ReLU(),
-            nn.Linear(512, n_classes),
-        )
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return self.layers(x)
 
 
 class Cifar10TestSet:
@@ -274,45 +203,6 @@ class TinyImageNetValSet:
         x = torch.from_numpy(arr).permute(2, 0, 1)
         x = (x - TINY_MEAN) / TINY_STD
         return x, label
-
-
-def build_model(spec: ModelSpec) -> nn.Module:
-    if spec.dataset == "tinyimagenet":
-        return CNN7TinyImageNet(spec.input_shape, spec.width, spec.n_classes)
-    return CNN7(spec.input_shape, spec.width, spec.n_classes)
-
-
-def load_bounded_module_checkpoint(model: nn.Module, checkpoint_path: Path) -> None:
-    raw_state = torch.load(checkpoint_path, map_location="cpu")
-    if not isinstance(raw_state, OrderedDict):
-        if isinstance(raw_state, dict):
-            raw_state = raw_state.get("state_dict") or raw_state.get("model_state_dict") or raw_state
-        if not isinstance(raw_state, OrderedDict):
-            raw_state = OrderedDict(raw_state)
-
-    model_state = model.state_dict()
-    # CTRAIN stores ModelWrapper.state_dict(), which delegates to auto_LiRPA's
-    # BoundedModule.state_dict(). Its keys are graph-node names such as
-    # "/1.param" and "/5.buffer", and it omits BatchNorm num_batches_tracked
-    # counters. The saved tensor order matches the underlying PyTorch module
-    # parameters and persistent buffers.
-    source_items = [(key, value) for key, value in raw_state.items() if torch.is_tensor(value)]
-    target_items = [(key, value) for key, value in model_state.items() if not key.endswith("num_batches_tracked")]
-    if len(source_items) != len(target_items):
-        raise ValueError(
-            f"Checkpoint tensor count mismatch for {checkpoint_path}: "
-            f"{len(source_items)} source tensors, {len(target_items)} model tensors"
-        )
-
-    converted = OrderedDict(model_state)
-    for (source_key, source_value), (target_key, target_value) in zip(source_items, target_items):
-        if tuple(source_value.shape) != tuple(target_value.shape):
-            raise ValueError(
-                f"Shape mismatch for {checkpoint_path}: {source_key} {tuple(source_value.shape)} "
-                f"does not match {target_key} {tuple(target_value.shape)}"
-            )
-        converted[target_key] = source_value.to(dtype=target_value.dtype)
-    model.load_state_dict(converted, strict=True)
 
 
 def remove_training_mode_attr(onnx_path: Path) -> None:
@@ -434,30 +324,6 @@ def validate_onnx_models() -> None:
             if node.op_type in {"BatchNormalization", "Dropout"}:
                 if any(attr.name == "training_mode" for attr in node.attribute):
                     raise AssertionError(f"{path} still has a {node.op_type} training_mode attribute")
-
-
-def export_onnx(spec: ModelSpec, output_path: Path) -> None:
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    model = build_model(spec)
-    load_bounded_module_checkpoint(model, REPO_ROOT / spec.checkpoint)
-    model.eval()
-    dummy = torch.randn(1, *spec.input_shape, dtype=torch.float32)
-    with torch.no_grad():
-        torch.onnx.export(
-            model,
-            dummy,
-            output_path,
-            export_params=True,
-            opset_version=18,
-            do_constant_folding=True,
-            input_names=["input"],
-            output_names=["output"],
-            dynamic_axes={"input": {0: "batch_size"}, "output": {0: "batch_size"}},
-            training=torch.onnx.TrainingMode.EVAL,
-            dynamo=False,
-            verbose=False,
-        )
-    remove_training_mode_attr(output_path)
 
 
 def classify_bin(item: dict[str, Any]) -> str | None:
@@ -616,7 +482,7 @@ def write_vnnlib(path: Path, spec: ModelSpec, image_index: int, label: int, boun
 
 
 def prepare_output_dirs() -> None:
-    for dirname in ("onnx", "vnnlib", "metadata"):
+    for dirname in ("vnnlib", "metadata"):
         path = SCRIPT_DIR / dirname
         if path.exists():
             shutil.rmtree(path)
@@ -709,7 +575,6 @@ def generate_instances(seed: int, data_root: Path) -> list[SampledInstance]:
                     onnx_path=onnx_rel.as_posix(),
                     vnnlib_path=vnnlib_rel.as_posix(),
                     source_results_json=spec.results_json,
-                    source_checkpoint=spec.checkpoint,
                     replacement_sampling=replacement,
                 )
             )
@@ -745,16 +610,6 @@ def run_benchmark_generation(seed: int, onnx_zip_url: str | None, data_root: Pat
     write_metadata(seed, sampled_metadata, "portable")
 
 
-def rebuild_from_sources(seed: int, data_root: Path, use_ctrain: bool) -> None:
-    prepare_output_dirs()
-    ensure_datasets(data_root, use_ctrain)
-    for spec in MODEL_SPECS:
-        onnx_rel = Path("onnx") / f"{spec.key}.onnx"
-        export_onnx(spec, SCRIPT_DIR / onnx_rel)
-    sampled_metadata = generate_instances(seed, data_root)
-    write_metadata(seed, sampled_metadata, "source_rebuild")
-
-
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generate the VNN-COMP challenging certified training benchmark.")
     parser.add_argument("seed", type=int, help="Random seed used to randomize benchmark generation.")
@@ -777,14 +632,6 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         action="store_true",
         help="Use local torchvision/urllib dataset download helpers instead of trying CTRAIN loaders first.",
     )
-    parser.add_argument(
-        "--rebuild-from-sources",
-        action="store_true",
-        help=(
-            "Recreate ONNX/VNN-LIB artifacts from the original training workspace. "
-            "The default portable mode downloads/extracts ONNX models and regenerates VNN-LIB specs from bundled results."
-        ),
-    )
     return parser.parse_args(argv[1:])
 
 
@@ -792,10 +639,7 @@ def main(argv: list[str]) -> None:
     args = parse_args(argv)
     data_root = args.data_root.resolve()
     use_ctrain = not args.no_ctrain_download
-    if args.rebuild_from_sources:
-        rebuild_from_sources(args.seed, data_root, use_ctrain)
-    else:
-        run_benchmark_generation(args.seed, args.onnx_zip_url, data_root, use_ctrain)
+    run_benchmark_generation(args.seed, args.onnx_zip_url, data_root, use_ctrain)
 
 
 if __name__ == "__main__":

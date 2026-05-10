@@ -1,10 +1,9 @@
-numpy
-torch
-torchvision
-pillow
-onnx
-requests
-
-# Optional: if installed, generate_properties.py will try CTRAIN's dataset
-# loaders before falling back to local torchvision/urllib helpers.
-# CTRAIN
+numpy>=1.23,<1.25
+torch>=2.0,<2.5
+torchvision>=0.15,<0.20
+pillow>=9.5,<11
+onnx>=1.14,<1.17
+requests>=2.31,<2.32
+urllib3>=1.26,<2
+pyOpenSSL>=23.2,<24
+cryptography>=41,<42

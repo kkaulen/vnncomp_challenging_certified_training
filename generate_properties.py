@@ -13,7 +13,7 @@ import zipfile
 from collections import OrderedDict
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Dict, List, Optional, Tuple, Union
 from urllib.parse import unquote, urlparse
 from xml.etree import ElementTree
 
@@ -70,7 +70,7 @@ class ModelSpec:
     dataset: str
     network: str
     width: int
-    input_shape: tuple[int, int, int]
+    input_shape: Tuple[int, int, int]
     n_classes: int
     eps: float
     results_json: str
@@ -171,7 +171,7 @@ class Cifar10TestSet:
     def __len__(self) -> int:
         return len(self.labels)
 
-    def __getitem__(self, index: int) -> tuple[torch.Tensor, int]:
+    def __getitem__(self, index: int) -> Tuple[torch.Tensor, int]:
         x = torch.from_numpy(self.data[index])
         x = (x - CIFAR_MEAN) / CIFAR_STD
         return x, int(self.labels[index])
@@ -184,7 +184,7 @@ class TinyImageNetValSet:
             raise FileNotFoundError(f"TinyImageNet validation images not found: {root}")
         class_dirs = sorted(path for path in root.iterdir() if path.is_dir())
         self.class_to_idx = {path.name: idx for idx, path in enumerate(class_dirs)}
-        self.samples: list[tuple[Path, int]] = []
+        self.samples: List[Tuple[Path, int]] = []
         for class_dir in class_dirs:
             label = self.class_to_idx[class_dir.name]
             for image_path in sorted(class_dir.iterdir()):
@@ -196,7 +196,7 @@ class TinyImageNetValSet:
     def __len__(self) -> int:
         return len(self.samples)
 
-    def __getitem__(self, index: int) -> tuple[torch.Tensor, int]:
+    def __getitem__(self, index: int) -> Tuple[torch.Tensor, int]:
         image_path, label = self.samples[index]
         with Image.open(image_path) as image:
             arr = np.asarray(image.convert("RGB"), dtype=np.float32) / 255.0
@@ -219,7 +219,7 @@ def remove_training_mode_attr(onnx_path: Path) -> None:
         onnx.save(model, onnx_path)
 
 
-def expected_onnx_paths() -> list[Path]:
+def expected_onnx_paths() -> List[Path]:
     return [SCRIPT_DIR / "onnx" / filename for filename in EXPECTED_ONNX_FILES]
 
 
@@ -245,7 +245,7 @@ def download_sciebo_share(share_url: str, password: str, output_path: Path) -> N
         raise PermissionError("Sciebo rejected the share password while listing ONNX files.")
     response.raise_for_status()
 
-    candidates: list[str] = []
+    candidates: List[str] = []
     xml_root = ElementTree.fromstring(response.content)
     for href in xml_root.findall(".//{DAV:}href"):
         text = href.text or ""
@@ -284,7 +284,7 @@ def download_onnx_archive(url: str, output_path: Path) -> None:
     urllib.request.urlretrieve(url, output_path)
 
 
-def ensure_onnx_models(onnx_zip_url: str | None) -> None:
+def ensure_onnx_models(onnx_zip_url: Optional[str]) -> None:
     if all(path.exists() for path in expected_onnx_paths()):
         return
 
@@ -326,7 +326,7 @@ def validate_onnx_models() -> None:
                     raise AssertionError(f"{path} still has a {node.op_type} training_mode attribute")
 
 
-def classify_bin(item: dict[str, Any]) -> str | None:
+def classify_bin(item: Dict[str, Any]) -> Optional[str]:
     result = item.get("result")
     if result not in {"sat", "unsat", "timeout"}:
         return None
@@ -345,12 +345,12 @@ def classify_bin(item: dict[str, Any]) -> str | None:
     return None
 
 
-def load_binned_results(spec: ModelSpec) -> dict[str, list[tuple[int, dict[str, Any]]]]:
+def load_binned_results(spec: ModelSpec) -> Dict[str, List[Tuple[int, Dict[str, Any]]]]:
     path = SCRIPT_DIR / spec.results_json
     if not path.exists():
         raise FileNotFoundError(f"abCROWN results not found for {spec.key}: {path}")
     payload = json.loads(path.read_text())
-    bins: dict[str, list[tuple[int, dict[str, Any]]]] = {name: [] for name in BIN_COUNTS}
+    bins: Dict[str, List[Tuple[int, Dict[str, Any]]]] = {name: [] for name in BIN_COUNTS}
     for key, item in payload.items():
         if not isinstance(item, dict):
             continue
@@ -361,9 +361,9 @@ def load_binned_results(spec: ModelSpec) -> dict[str, list[tuple[int, dict[str, 
     return bins
 
 
-def sample_results(spec: ModelSpec, rng: np.random.Generator) -> list[tuple[int, str, dict[str, Any], bool]]:
+def sample_results(spec: ModelSpec, rng: np.random.Generator) -> List[Tuple[int, str, Dict[str, Any], bool]]:
     bins = load_binned_results(spec)
-    selected: list[tuple[int, str, dict[str, Any], bool]] = []
+    selected: List[Tuple[int, str, Dict[str, Any], bool]] = []
     for bin_name, count in BIN_COUNTS.items():
         entries = bins[bin_name]
         if not entries:
@@ -435,7 +435,7 @@ def ensure_datasets(data_root: Path, use_ctrain: bool) -> None:
     ensure_tinyimagenet(data_root)
 
 
-def dataset_for(spec: ModelSpec, cache: dict[str, Any], data_root: Path) -> Any:
+def dataset_for(spec: ModelSpec, cache: Dict[str, Any], data_root: Path) -> Any:
     if spec.dataset not in cache:
         cache[spec.dataset] = TinyImageNetValSet(data_root) if spec.dataset == "tinyimagenet" else Cifar10TestSet(data_root)
     return cache[spec.dataset]
@@ -503,7 +503,10 @@ def prepare_instance_dirs() -> None:
         instances.unlink()
 
 
-def validate_instances(sampled: list[SampledInstance | dict[str, Any]]) -> None:
+InstanceLike = Union[SampledInstance, Dict[str, Any]]
+
+
+def validate_instances(sampled: List[InstanceLike]) -> None:
     if len(sampled) != 60:
         raise AssertionError(f"Expected 60 sampled instances, got {len(sampled)}")
     total_timeout = sum(get_item(item, "timeout") for item in sampled)
@@ -526,13 +529,13 @@ def validate_instances(sampled: list[SampledInstance | dict[str, Any]]) -> None:
             raise AssertionError(f"Missing VNN-LIB path: {get_item(item, 'vnnlib_path')}")
 
 
-def get_item(item: SampledInstance | dict[str, Any], key: str) -> Any:
+def get_item(item: InstanceLike, key: str) -> Any:
     if isinstance(item, dict):
         return item[key]
     return getattr(item, key)
 
 
-def write_instances_csv(rows: list[SampledInstance | dict[str, Any]]) -> None:
+def write_instances_csv(rows: List[InstanceLike]) -> None:
     with (SCRIPT_DIR / "instances.csv").open("w", newline="") as handle:
         writer = csv.writer(handle)
         for item in rows:
@@ -545,10 +548,10 @@ def write_instances_csv(rows: list[SampledInstance | dict[str, Any]]) -> None:
             )
 
 
-def generate_instances(seed: int, data_root: Path) -> list[SampledInstance]:
+def generate_instances(seed: int, data_root: Path) -> List[SampledInstance]:
     rng = np.random.default_rng(seed)
-    sampled_metadata: list[SampledInstance] = []
-    dataset_cache: dict[str, Any] = {}
+    sampled_metadata: List[SampledInstance] = []
+    dataset_cache: Dict[str, Any] = {}
 
     for spec in MODEL_SPECS:
         onnx_rel = Path("onnx") / f"{spec.key}.onnx"
@@ -582,7 +585,7 @@ def generate_instances(seed: int, data_root: Path) -> list[SampledInstance]:
     return sampled_metadata
 
 
-def write_metadata(seed: int, sampled_metadata: list[SampledInstance], mode: str) -> None:
+def write_metadata(seed: int, sampled_metadata: List[SampledInstance], mode: str) -> None:
     validate_instances(sampled_metadata)
     write_instances_csv(sampled_metadata)
     metadata = {
@@ -601,7 +604,7 @@ def write_metadata(seed: int, sampled_metadata: list[SampledInstance], mode: str
     print(f"Total CSV timeout: {metadata['total_timeout']} seconds")
 
 
-def run_benchmark_generation(seed: int, onnx_zip_url: str | None, data_root: Path, use_ctrain: bool) -> None:
+def run_benchmark_generation(seed: int, onnx_zip_url: Optional[str], data_root: Path, use_ctrain: bool) -> None:
     ensure_onnx_models(onnx_zip_url)
     validate_onnx_models()
     ensure_datasets(data_root, use_ctrain)
@@ -610,7 +613,7 @@ def run_benchmark_generation(seed: int, onnx_zip_url: str | None, data_root: Pat
     write_metadata(seed, sampled_metadata, "portable")
 
 
-def parse_args(argv: list[str]) -> argparse.Namespace:
+def parse_args(argv: List[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generate the VNN-COMP challenging certified training benchmark.")
     parser.add_argument("seed", type=int, help="Random seed used to randomize benchmark generation.")
     parser.add_argument(
@@ -635,7 +638,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     return parser.parse_args(argv[1:])
 
 
-def main(argv: list[str]) -> None:
+def main(argv: List[str]) -> None:
     args = parse_args(argv)
     data_root = args.data_root.resolve()
     use_ctrain = not args.no_ctrain_download

@@ -1,21 +1,13 @@
 # VNN-COMP Challenging Certified Training
 
 This benchmark targets complete verification of recent state-of-the-art
-certified-training models trained with CTRAIN. It contains six MTL-IBP-based
-models and seed-specific local-robustness properties for CIFAR-10 and
-TinyImageNet:
-
-- `cifar10_eps2_cnn7`
-- `cifar10_eps2_wide_cnn7`
-- `cifar10_eps8_cnn7`
-- `cifar10_eps8_wide_cnn7`
-- `tinyimagenet_eps1_cnn7`
-- `tinyimagenet_eps1_wide_cnn7`
+certified-training models trained with [CTRAIN](https://github.com/ADA-research/CTRAIN). It contains six MTL-IBP-based
+models ([De Palma et al.](https://arxiv.org/abs/2305.13991)) and seed-specific local-robustness properties for CIFAR-10 and
+TinyImageNet.
 
 ## Motivation
-
-Using CTRAIN, we obtained unusually strong certifiably trained models based on
-MTL-IBP. These models improve the state of the art in certified training, but
+Using [CTRAIN](https://github.com/ADA-research/CTRAIN), we obtained unusually strong certifiably trained models based on
+MTL-IBP ([De Palma et al.](https://arxiv.org/abs/2305.13991)). These models improve the state of the art in certified training, but
 they also expose a verification bottleneck: better certified-training
 performance often makes complete verification substantially harder.
 
@@ -23,7 +15,7 @@ performance often makes complete verification substantially harder.
 | --- | --- | ---: | ---: |
 | CIFAR-10, epsilon `2/255` | `cnn7` | `83.54%` | `66.04%` |
 | CIFAR-10, epsilon `8/255` | `cnn7` | `57.19%` | `35.49%` |
-| TinyImageNet, epsilon `1/255` | `cnn7_tinyimagenet` | `41.59%` | `27.72%` |
+| TinyImageNet, epsilon `1/255` | `cnn7_tinyimagenet` | `41.59%` | `27.81%` |
 
 We additionally include wider variants of these models. These models may be
 state of the art in terms of certified-training performance, but they suffer
@@ -31,18 +23,11 @@ severely from timeouts under complete verification.
 
 | Setting | Wide model | Standard acc. | Certified acc. |
 | --- | --- | ---: | ---: |
-| CIFAR-10, epsilon `2/255` | `wide_cnn7` | `85.37%` | `46.39%` |
-| CIFAR-10, epsilon `8/255` | `wide_cnn7` | `57.74%` | `33.44%` |
-| TinyImageNet, epsilon `1/255` | `wide_cnn7_tinyimagenet` | `41.89%` | `25.58%` |
+| CIFAR-10, epsilon `2/255` | `wide_cnn7` | `85.37%` | `60.28%` |
+| CIFAR-10, epsilon `8/255` | `wide_cnn7` | `57.74%` | `34.60%` |
+| TinyImageNet, epsilon `1/255` | `wide_cnn7_tinyimagenet` | `41.89%` | `28.35%` |
 
-| Setting | Wide model | Timeouts | Timeout rate |
-| --- | --- | ---: | ---: |
-| CIFAR-10, epsilon `2/255` | `wide_cnn7` | `1,433/10,000` | `14.33%` |
-| CIFAR-10, epsilon `8/255` | `wide_cnn7` | `132/10,000` | `1.32%` |
-| TinyImageNet, epsilon `1/255` | `wide_cnn7_tinyimagenet` | `401/10,000` | `4.01%` |
-
-The bundled results were obtained with abCROWN using its standard
-complete-verification configuration. Each of the six benchmark models was
+The bundled results were obtained with [$\alpha\beta$-CROWN](https://github.com/Verified-Intelligence/alpha-beta-CROWN) using its standard configuration on a NVIDIA H100 GPU and a per-instance cutoff time of $1\,000$ seconds. Each of the six benchmark models was
 evaluated on `10,000` test-set properties. Across all `60,000` properties,
 `2,994` timed out. The hardest individual setting is `cifar10_eps2_wide_cnn7`,
 with `1,433/10,000` timeouts.
@@ -58,11 +43,11 @@ with `1,433/10,000` timeouts.
 | Total | `60,000` | `2,994` | `4.99%` |
 
 In other words, progress in certified training now creates verification
-workloads that current complete verifiers often cannot finish within practical
+workloads that current state-of-the-art verifiers often cannot finish within practical
 budgets.
 
-This benchmark is designed to measure progress on complete verification for
-challenging but highly relevant certifiably trained image classifiers.
+**This benchmark is designed to measure progress on complete verification for
+challenging but highly relevant certifiably trained image classifiers.**
 
 ## Methodology
 

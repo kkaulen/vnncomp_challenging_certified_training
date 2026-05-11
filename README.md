@@ -15,7 +15,7 @@ performance often makes complete verification substantially harder.
 | --- | --- | ---: | ---: |
 | CIFAR-10, epsilon `2/255` | `cnn7` | `83.54%` | `66.04%` |
 | CIFAR-10, epsilon `8/255` | `cnn7` | `57.19%` | `35.49%` |
-| TinyImageNet, epsilon `1/255` | `cnn7_tinyimagenet` | `41.59%` | `27.81%` |
+| TinyImageNet, epsilon `1/255` | `cnn7_tinyimagenet` | `41.21%` | `27.81%` |
 
 We additionally include wider variants of these models. These models may be
 state of the art in terms of certified-training performance, but they suffer
